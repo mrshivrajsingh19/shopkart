@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/customers/:path*", "destination": "/api/index.js" },
+    { "source": "/customers", "destination": "/api/index.js" },
+    { "source": "/products/:path*", "destination": "/api/index.js" },
+    { "source": "/products", "destination": "/api/index.js" },
+    { "source": "/wishlist/:path*", "destination": "/api/index.js" },
+    { "source": "/wishlist", "destination": "/api/index.js" },
+    { "source": "/cart/:path*", "destination": "/api/index.js" },
+    { "source": "/cart", "destination": "/api/index.js" },
+    { "source": "/orders/:path*", "destination": "/api/index.js" },
+    { "source": "/orders", "destination": "/api/index.js" },
+    { "source": "/api/:path*", "destination": "/api/index.js" },
+    { "source": "/api", "destination": "/api/index.js" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
