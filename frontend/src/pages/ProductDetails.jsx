@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { getProductById } from '../services/api';
 import { useCart } from '../context/useCart';
+import { handleImageError } from '../utils/imageHelper';
 import '../styles/products.css';
 
 function ProductDetails() {
@@ -87,9 +88,8 @@ function ProductDetails() {
                 className="product-detail-image"
                 src={product.image}
                 alt={product.name}
-                onError={(event) => {
-                  event.currentTarget.hidden = true;
-                }}
+                referrerPolicy="no-referrer"
+                onError={handleImageError}
               />
             </div>
             <div className="product-detail-copy">

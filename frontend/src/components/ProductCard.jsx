@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { addToWishlist, removeFromWishlist } from '../services/api';
 import { useCart } from '../context/useCart';
+import { handleImageError } from '../utils/imageHelper';
 
 function ProductCard({ product, isWishlisted = false, onWishlistChange }) {
   const [saving, setSaving] = useState(false);
@@ -65,9 +66,8 @@ function ProductCard({ product, isWishlisted = false, onWishlistChange }) {
           className="product-card-image"
           src={product.image}
           alt={product.name}
-          onError={(event) => {
-            event.currentTarget.hidden = true;
-          }}
+          referrerPolicy="no-referrer"
+          onError={handleImageError}
         />
       </Link>
       <div className="product-card-content">

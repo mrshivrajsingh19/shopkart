@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { getOrderById } from '../services/api';
+import { handleImageError } from '../utils/imageHelper';
 import '../styles/products.css';
 
 const formatPrice = (value) => new Intl.NumberFormat('en-IN', {
@@ -51,7 +52,14 @@ function OrderDetails({ success = false }) {
             <section className="order-snapshot-list" aria-label="Ordered products">
               {order.items.map((item, index) => (
                 <article className="order-snapshot-item" key={`${item.product}-${index}`}>
-                  {item.image && <img src={item.image} alt={item.name} onError={(event) => { event.currentTarget.hidden = true; }} />}
+                  {item.image && (
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      referrerPolicy="no-referrer"
+                      onError={handleImageError}
+                    />
+                  )}
                   <div><strong>{item.name}</strong><p>{formatPrice(item.price)} × {item.quantity}</p></div>
                   <strong>{formatPrice(item.price * item.quantity)}</strong>
                 </article>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { removeFromWishlist } from '../services/api';
+import { handleImageError } from '../utils/imageHelper';
 
 function WishlistCard({ product, onRemoved }) {
   const [removing, setRemoving] = useState(false);
@@ -35,9 +36,8 @@ function WishlistCard({ product, onRemoved }) {
           className="product-card-image"
           src={product.image}
           alt={product.name}
-          onError={(event) => {
-            event.currentTarget.hidden = true;
-          }}
+          referrerPolicy="no-referrer"
+          onError={handleImageError}
         />
       </Link>
       <div className="product-card-content">

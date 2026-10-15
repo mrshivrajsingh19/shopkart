@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/useCart';
+import { handleImageError } from '../utils/imageHelper';
 
 const formatPrice = (value) => new Intl.NumberFormat('en-IN', {
   style: 'currency',
@@ -45,9 +46,8 @@ function CartItem({ item }) {
           className="cart-item-image"
           src={product.image}
           alt={product.name}
-          onError={(event) => {
-            event.currentTarget.hidden = true;
-          }}
+          referrerPolicy="no-referrer"
+          onError={handleImageError}
         />
       </Link>
       <div className="cart-item-details">
