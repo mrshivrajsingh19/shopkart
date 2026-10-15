@@ -1,0 +1,12 @@
+# Dependencies and generated output
+**/node_modules/
+frontend/dist/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Local files
+.DS_Store
+*.log
