@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/customers',
+  baseURL: '/api/customers',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -39,20 +39,8 @@ const orderApi = axios.create({
   },
 });
 
-export const registerCustomer = async ({
-  fullName,
-  email,
-  password,
-  phone
-}) => {
-
-  const response = await api.post('/register', {
-    fullName,
-    email,
-    password,
-    phone
-  });
-
+export const registerCustomer = async ({ fullName, email, password, phone }) => {
+  const response = await api.post('/register', { fullName, email, password, phone });
   return response.data;
 };
 
@@ -72,12 +60,12 @@ export const logoutCustomer = async () => {
 };
 
 export const createProduct = async (product) => {
-  const response = await productApi.post('/', product);
+  const response = await productApi.post('', product);
   return response.data;
 };
 
 export const getProducts = async (params = {}, signal) => {
-  const response = await productApi.get('/', { params, signal });
+  const response = await productApi.get('', { params, signal });
   return response.data;
 };
 
@@ -87,7 +75,7 @@ export const getProductById = async (id, signal) => {
 };
 
 export const getWishlist = async (signal) => {
-  const response = await wishlistApi.get('/', { signal });
+  const response = await wishlistApi.get('', { signal });
   return response.data;
 };
 
@@ -102,7 +90,7 @@ export const removeFromWishlist = async (productId) => {
 };
 
 export const getCart = async (signal) => {
-  const response = await cartApi.get('/', { signal });
+  const response = await cartApi.get('', { signal });
   return response.data;
 };
 
@@ -132,7 +120,7 @@ export const verifyPayment = async (paymentDetails) => {
 };
 
 export const getOrders = async (signal) => {
-  const response = await orderApi.get('/', { signal });
+  const response = await orderApi.get('', { signal });
   return response.data;
 };
 
